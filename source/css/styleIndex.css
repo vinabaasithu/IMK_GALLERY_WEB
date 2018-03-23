@@ -1,6 +1,13 @@
 div {
   margin: 0 !important;
 }
+a {
+  color: rgba(0, 0, 0, 0.7);
+}
+a:hover {
+  color: #000;
+  text-decoration: none;
+}
 .header {
   padding: 1.5vw;
 }
@@ -17,5 +24,28 @@ div {
 }
 .slider {
   height: 30vw;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  background-image: url("../img/pexels-photo-289796.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.9;
+  background-position: bottom;
+}
+.slider:hover {
+  opacity: 1;
+}
+.trendingNew-container {
+  margin: 4vw 8vw !important;
+}
+.trendingNew-menu a {
+  font-size: 1.3em;
+  margin: 0 2vw;
+}
+.trendingNew-img img {
+  margin: 1vw 0;
+}
+.footer {
+  padding: 3vw;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
 }

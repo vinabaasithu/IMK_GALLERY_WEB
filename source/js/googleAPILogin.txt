@@ -1,0 +1,17 @@
+
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+} // get Basic Profile
+<a href="https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost/IMK">LOGOUT  </a> // logout
+
+<meta name="google-signin-client_id" content="152377592712-9ir8e8rj567jitnj9q194gon715aop3c.apps.googleusercontent.com"> //initialisation apps client id
+<!-- googlesignin function -->
+<script src="source/js/googlelog.js" async defer></script> //offline google script
+
+<div class="loginWithGoogle">
+  <div class="g-signin2" data-onsuccess="onSignIn"></div> //login button
+</div>

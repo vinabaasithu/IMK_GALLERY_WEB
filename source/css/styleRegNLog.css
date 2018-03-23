@@ -1,0 +1,103 @@
+h1 {
+  font-family: "roboto";
+}
+body {
+  background-image: url("../img/pexels-photo-392018.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "roboto";
+}
+.container-form {
+  margin: 5vw auto;
+  width: 35%;
+}
+.container-form form {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5vw;
+  border-radius: 0.5vw;
+}
+.form-group label {
+  width: 5%;
+}
+.form-group input {
+  display: inline-block;
+  width: 90%;
+  margin-left: 3%;
+}
+.form-group input[type="submit"] {
+  width: 90%;
+  margin-left: 8%;
+}
+form h1 {
+  font-size: 1.5em;
+}
+.showhidepass {
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  display: block;
+  margin-right: 1vw;
+  text-align: right;
+}
+.showhidepass:hover {
+  color: #000;
+}
+form#signupForm, form#signinForm {
+  display: none;
+}
+
+
+
+/* google */
+.abcRioButton.abcRioButtonLightBlue {
+    height: 36px;
+    width: 90% !important;
+    margin-left: 9%;
+}
+.abcRioButtonContents span {
+    font-size: 1.2em !important;
+    margin-right: 10% !important;
+}
+
+form .text-center.pesan {
+    color: rgba(255, 0, 0, 0.9);
+}
+@font-face {
+  font-family: "roboto";
+  src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@media only screen and (max-width: 918px) {
+  .container-form {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 790px) {
+  .container-form {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 618px) {
+  .container-form {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 508px) {
+  .container-form {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 432px) {
+  .container-form {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 374px) {
+  .container-form {
+    width: 95%;
+  }
+}
