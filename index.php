@@ -19,7 +19,7 @@
   </head>
   <body>
     <div class="header row text-center">
-      <div class="col-md-4 logo">
+      <div class="col-md-3 logo">
         <div class="row">
           <div class="col-md-3">
             <strong>LOGO</strong>
@@ -30,8 +30,15 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
-
+      <div class="col-md-4">
+        <form class="searchindex" action="gallery.php" method="post">
+          <div class="form-group form-group-search">
+            <input type="text" name="search" value="" placeholder="Cari Disini.." class="form-control search">
+              <button class="btn-fa-search" type="submit" name="submit">
+                <i class="fas fa-search"></i>
+              </button>
+          </div>
+        </form>
       </div>
       <div class="col-md-5 indexMenu">
         <div class="row">
@@ -91,7 +98,7 @@
       <a href="../IMK/">
         <i class="fas fa-home"></i>
       </a>
-      <a href="#">
+      <a href="#" class="menuMobileSearch">
         <i class="fas fa-search"></i>
       </a>
       <a href="profile.php<?php if(isset($_SESSION["username"])) echo "?r=".$_SESSION['username'] ?>">
@@ -104,6 +111,14 @@
         <i class="fas fa-sign-out-alt"></i>
       </a>
     </div>
+    <form class="searchindexmobile" action="gallery.php" method="post">
+      <div class="form-group form-group-search">
+        <input type="text" name="search" value="" placeholder="Cari Disini.." class="form-control search">
+          <button class="btn-fa-search" type="submit" name="submit">
+            <i class="fas fa-search"></i>
+          </button>
+      </div>
+    </form>
 
     <div class="slider row">
 
@@ -153,6 +168,9 @@
       $(document).ready(function() {
         $("#usericonklik").click(function(){
           $("#iconklik").fadeToggle();
+        });
+        $(".menuMobileSearch").click(function(){
+          $(".searchindexmobile").fadeToggle();
         });
       });
     </script>

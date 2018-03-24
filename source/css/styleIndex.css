@@ -88,10 +88,51 @@ a.col-md-6.text-center.usericon:hover {
   font-weight: 600;
   display: none;
 }
-.iconklik p:hover {
-
+.form-group-search {
+  position: relative;
 }
-
+.search {
+  width: 80%;
+  display: inline-block;
+  border-radius: 1.1vw;
+  position: relative;
+  z-index: 50;
+}
+.btn-fa-search  {
+  position: absolute;
+  border: 1px solid #ddd;
+  background: #495057;
+  outline: none;
+  font-size: 1.42em;
+  right: -0.7em;
+  width: 7vw;
+  text-align: right;
+  border-radius: 1.1vw;
+  cursor: pointer;
+  color: #f9efeb;
+}
+.fa-search {
+  margin-right: 0.6vw;
+}
+.searchindexmobile {
+  display: none;
+  position: fixed;
+  bottom: 15vw;
+  width: 90%;
+  z-index: 50;
+}
+.searchindexmobile input.form-control.search {
+  left: 5vw;
+  width: 85%;
+  height: 10vw;
+  border-radius: 3vw;
+}
+.searchindexmobile button.btn-fa-search {
+  width: 20%;
+  height: 10vw;
+  border-radius: 3vw;
+  padding-right: 3vw;
+}
 @media only screen and (max-width: 768px) {
     .logotitle {
         text-align: center !important;
@@ -100,6 +141,9 @@ a.col-md-6.text-center.usericon:hover {
         display: block;
     }
     .indexMenu {
+      display: none;
+    }
+    .searchindex {
       display: none;
     }
 }
