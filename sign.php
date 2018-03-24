@@ -45,7 +45,7 @@
     $loginusername = $_POST['loginusername'];
     $loginpassword = md5($_POST['loginpassword']);
     $gmail = $_POST['gmail'];
-    if ($gmail == "") {
+    if (!$gmail) {
       $stmt = $mysqli->prepare('SELECT username FROM user WHERE (username = ? || email = ?) && password = ?');
       $stmt->bind_param("sss", $loginusername, $loginusername, $loginpassword);
       $stmt->execute();
@@ -61,6 +61,7 @@
       $stmt->execute();
       if ($stmt->fetch()) {
         $_SESSION['username'] = $gmail;
+        $_SESSION['gmail'] = $gmail;
         header("Location: ../IMK/");
         $stmt->close();
       } else {
@@ -70,6 +71,7 @@
         $stmt->bind_param("ssss", $gmail, $gmail, md5($gmail), $date);
         if ($stmt->execute()) {
           $_SESSION['username'] = $gmail;
+          $_SESSION['gmail'] = $gmail;
           header("Location: profile.php?r=$gmail");
         }
         $stmt->close();

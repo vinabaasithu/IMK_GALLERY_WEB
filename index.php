@@ -1,5 +1,10 @@
 <?php
   session_start();
+  if(isset($_GET['r']) && $_GET['r'] == "logout") {
+    $logout = $_GET['r'];
+    session_destroy();
+    header("Location: ../IMK/");
+  }
  ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +24,7 @@
           <div class="col-md-3">
             <strong>LOGO</strong>
           </div>
-          <div class="col-md-9 text-left">
+          <div class="col-md-9 text-left logotitle">
             <span><strong>BLAGU</strong></span> <br>
             <span><small>BL Arts Gallery Universe</small></span>
           </div>
@@ -30,7 +35,7 @@
       </div>
       <div class="col-md-5 indexMenu">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-8" style="<?php if (isset($_SESSION['username'])) echo "right:-8vw" ?>" >
             <div class="row indexMenu1">
               <a class="col-md-3" href="#">
                   Gallery
@@ -38,27 +43,68 @@
               <a class="col-md-3" href="#">
                   Event
               </a>
-             <a class="col-md-3" href="#">
-               ...
-             </a>
              <div class="col-md-3 uploadBtn">
-               <input class="btn btn-primary" type="button" name="" value="Upload">
+               <a href="upload.php">
+                 <button class="btn btn-primary" type="button" name="" value="Upload">Upload</button>
+               </a>
              </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="row indexMenu2">
+              <?php
+                if (isset($_SESSION['username'])) {
+              ?>
+              <a href="#" class="col-md-6"></a>
+              <span class="col-md-4 text-center" id="usericonklik" href="#" >
+                <a class=" usericon" href="#">
+                  <i class="fas fa-user h4"></i>
+                </a>
+              </span>
+              <div class="iconklik" id="iconklik">
+                <a href="profile.php<?php if(isset($_SESSION["username"])) echo "?r=".$_SESSION['username'] ?>"><p>Profile</p></a>
+                <a href="#"><p>Setting</p></a>
+                <a href="<?php if(isset($_SESSION['gmail'])) echo "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" ?>http://localhost/IMK/index.php?r=logout"><p>Logout</p></a>
+
+              </div>
+               <!-- <a class="col-md-6" href="<?php if(isset($_SESSION['gmail'])) echo "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" ?>http://localhost/IMK/index.php?r=logout">
+                 Logout
+               </a> -->
+              <?php
+            } else {
+              ?>
               <a class="col-md-6" href="sign.php?r=SignIn">
                   Login
               </a>
               <a class="col-md-6" href="sign.php?r=SignUp">
                   SignUp
               </a>
+              <?php
+            }
+               ?>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="menuMobile">
+      <a href="../IMK/">
+        <i class="fas fa-home"></i>
+      </a>
+      <a href="#">
+        <i class="fas fa-search"></i>
+      </a>
+      <a href="profile.php<?php if(isset($_SESSION["username"])) echo "?r=".$_SESSION['username'] ?>">
+        <i class="fas fa-user"></i>
+      </a>
+      <a href="upload.php">
+        <i class="fas fa-upload"></i>
+      </a>
+      <a href="<?php if(isset($_SESSION['gmail'])) echo "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" ?>http://localhost/IMK/index.php?r=logout">
+        <i class="fas fa-sign-out-alt"></i>
+      </a>
+    </div>
+
     <div class="slider row">
 
     </div>
@@ -72,20 +118,28 @@
             <strong>New</strong>
           </a>
         </div>
-        <div class="trendingNew-img">
-          <?php
-            for ($i=0; $i < 6; $i++) {
-              echo "<div class='row'>";
-              for ($j=0; $j < 3; $j++) {
-          ?>
-          <div class="col-md-4">
-            <img class="img-fluid" src="source/img/img<?php echo rand(0, 2) ?>.jpeg" alt="pexels-photo-297648.jpeg">
-          </div>
-          <?php
+        <div class="trendingNew-img row">
+          <div class=" col-md-4 trendingNew-imgCol">
+            <?php
+              for($i = 0; $i < 5; $i++) {
+                echo "<img class='img-fluid' src='source/img/img".rand(0, 2).".jpeg'>";
               }
-              echo "</div>";
-            }
-           ?>
+             ?>
+          </div>
+          <div class=" col-md-4 trendingNew-imgCol">
+              <?php
+                for($i = 0; $i < 5; $i++) {
+                  echo "<img class='img-fluid' src='source/img/img".rand(0, 2).".jpeg'>";
+                }
+               ?>
+          </div>
+          <div class=" col-md-4 trendingNew-imgCol">
+              <?php
+                for($i = 0; $i < 5; $i++) {
+                  echo "<img class='img-fluid' src='source/img/img".rand(0, 2).".jpeg'>";
+                }
+               ?>
+          </div>
         </div>
       </div>
     </div>
@@ -95,5 +149,12 @@
     <script src="source/js/jquery-3.3.1.min.js"></script>
     <script src="source/js/popper.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="source/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#usericonklik").click(function(){
+          $("#iconklik").fadeToggle();
+        });
+      });
+    </script>
   </body>
 </html>
