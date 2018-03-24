@@ -1,0 +1,112 @@
+label {
+  cursor: pointer;
+}
+.header {
+  background-color: #000;
+  color: #fff;
+}
+.header a {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.header a:hover {
+  color: #fff !important;
+}
+.iconklik p{
+  color: rgba(0, 0, 0, 0.8);
+}
+.iconklik p:hover {
+  color: #000;
+}
+.usericon {
+  background-color: #ddd;
+}
+.fa-user {
+  color: rgba(0, 0, 0, 0.8);
+}
+.fa-user:hover {
+  color: #000;
+}
+.container {
+  position: relative;
+  background-color: #ddd;
+  width: 90%;
+  margin: 0 auto !important;
+  padding: 2vw;
+}
+.cameracircle {
+  border: 5px solid #212529;
+  border-radius: 50%;
+  display: inline-block;
+  padding: .8vw;
+  padding-bottom: 0;
+}
+.formUpload {
+  width: 80%;
+  margin: auto;
+}
+input[type="checkbox"] {
+  cursor: pointer;
+}
+.cursor {
+  cursor: pointer;
+}
+.categories-container {
+  padding: 2vw;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.8);
+}
+.fa-eye {
+  display: none;
+}
+.spandescgambar {
+  display: inline-block;
+  padding: 5px;
+  background-color: #905165;
+  color: #fff;
+  border-radius: 2vw;
+  cursor: pointer;
+  margin-bottom: 1vw;
+  margin-right: 1vw;
+}
+#fileupl {
+  top: -1vw;
+  left: -5vw;
+  position: absolute;
+  height: 9vw;
+  width: 15vw;
+  cursor: pointer;
+  opacity: 0;
+}
+.fileupl {
+  position: relative;
+}
+.previewimg {
+  display: none;
+  cursor: pointer;
+}
+/* .previewimg:hover .closeimg {
+  display: block;
+} */
+.closeimg {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 38vw;
+  width: 11vw;
+  z-index: 999;
+  position: absolute;
+  top: 2vw;
+  right: 10.5vw;
+  display: none;
+}
+span.h1.hapusgambar {
+  color: rgba(255, 33, 33, 0.8);
+  height: 100%;
+  display: block;
+  text-align: center;
+  line-height: 10;
+}
+.closeimg:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.closeimg:hover .hapusgambar {
+  color: rgba(255, 33, 33, 0.9);
+}
