@@ -1,9 +1,121 @@
 <?php
   session_start();
   require_once 'db.php';
+  $username;
   if(!(isset($_SESSION['username']))) {
     header("Location: index.php?r=logfirst");
+  } else {
+    $username = $_SESSION['username'];
   }
+  $pesanUpload = "";
+  if(isset($_POST['uploadgambar'])) {
+
+    $target_dir = "userimg/".$username."/";
+    if (!(file_exists($target_dir))) {
+      mkdir($target_dir);
+    }
+    $target_file = $target_dir . basename($_FILES["fileupl"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $nama_file_baru = basename($_FILES["fileupl"]["name"]);
+    $i = 0;
+    while (file_exists($target_file)) {
+      $nama_file_baru = basename($_FILES["fileupl"]["name"], ".".$imageFileType). $i.".".$imageFileType;
+      $target_file = $target_dir.$nama_file_baru;
+      $i++;
+    }
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES["fileupl"]["tmp_name"]);
+    if($check !== false) {
+        // echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        $pesanUpload .= "<p>File is not an image.</p>";
+        $uploadOk = 0;
+    }
+    // check categories
+
+    if(!isset($_POST["categories"])) {
+      $pesanUpload .= "<p>Categories belum diisi, Harap Isi Terlebih dahulu</p>";
+      $uploadOk = 0;
+    }
+    // Check file size
+    if ($_FILES["fileupl"]["size"] > 15000000) {
+        $pesanUpload .= "<p>Sorry, your file is too large.</p>";
+        $uploadOk = 0;
+    }
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        $pesanUpload .= "<p>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</p>";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+      $pesanUpload .= "<p>Sorry, your file was not uploaded.</p>";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["fileupl"]["tmp_name"], $target_file)) {
+            $pesanUpload .= "<p>The file ". $nama_file_baru. " has been uploaded.</p>";
+        } else {
+            $pesanUpload .= "<p>Sorry, there was an error uploading your file.</p>";
+        }
+    }
+
+    if ($uploadOk) {
+      $img_title = $_POST["imgtitle"];
+      $categories = $_POST["categories"];
+      $img_description = $_POST["imgdesc"];
+      $tags = array_unique(array_map('strtolower', $_POST["tags"]));
+      $date = date("Y-m-d h:i:s");
+      $stmt = $mysqli->prepare("INSERT INTO img (img_title, img_src, img_description, img_date_upload, username) VALUES (?, ?, ?, ?, ?)");
+      $stmt->bind_param("sssss", $img_title, $target_file, $img_description, $date, $username);
+      $stmt->execute();
+      $stmt->close();
+      $stmt = $mysqli->prepare("SELECT id_img FROM img WHERE img_title = ? && img_src = ? && img_description = ? && img_date_upload = ? && username = ?");
+      $stmt->bind_param("sssss", $img_title, $target_file, $img_description, $date, $username);
+      $stmt->execute();
+      $stmt->bind_result($id_img);
+      $stmt->fetch();
+      $stmt->close();
+      for ($i=0; $i < count($categories); $i++) {
+        $stmt = $mysqli->prepare("INSERT INTO img_categories_img (id_img, id_img_categories) VALUES (?, ?)");
+        $stmt->bind_param("ii", $id_img, $categories[$i]);
+        $stmt->execute();
+        $stmt->close();
+      }
+      $id_img_tags;
+      for ($i=0; $i < count($tags); $i++) {
+        $stmt = $mysqli->prepare("SELECT img_tags_name FROM img_tags WHERE img_tags_name = ?");
+        $stmt->bind_param("s", $tags[$i]);
+        $stmt->execute();
+        $stmt->store_result();
+        $num_rows = $stmt->num_rows;
+        if(!$num_rows) {
+          $stmt->close();
+          $stmt = $mysqli->prepare("INSERT INTO img_tags (img_tags_name) VALUES (?)");
+          $stmt->bind_param("s", $tags[$i]);
+          $stmt->execute();
+          $stmt->close();
+        } else {
+          $stmt->close();
+        }
+        $stmt = $mysqli->prepare("SELECT id_img_tags FROM img_tags WHERE img_tags_name = ?");
+        $stmt->bind_param("s", $tags[$i]);
+        $stmt->execute();
+        $stmt->bind_result($id_img_tags[$i]);
+        $stmt->fetch();
+        $stmt->close();
+      }
+      for ($i=0; $i < count($id_img_tags); $i++) {
+        $stmt = $mysqli->prepare("INSERT INTO img_tags_img (id_img, id_img_tags) VALUES (?, ?)");
+        $stmt->bind_param("ii", $id_img, $id_img_tags[$i]);
+        $stmt->execute();
+        $stmt->close();
+      }
+    }
+  }
+
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -19,11 +131,16 @@
   </head>
   <body>
     <?php include 'source/template/navbarMenuSearch.php'; ?>
+    <?php if (isset($pesanUpload)): ?>
+      <div class="pesan-upload">
+        <?php echo $pesanUpload ?>
+      </div>
+    <?php endif; ?>
     <div class="container">
       <form class="formUpload" id="formUpload" action="upload.php" method="post" enctype="multipart/form-data">
         <div class="text-center uploadimgform">
           <div class="cameracircle fileupl">
-            <input type="file" name="fileupl" id="fileupl">
+            <input type="file" name="fileupl" id="fileupl" required>
             <i class="fas fa-camera h2"></i>
           </div><br>
           <small>Click Disini Untuk Pilih Gambar</small>
@@ -55,7 +172,7 @@
                 if(!$i) {
                   echo "<div class='col-md-4'>";
                 }
-                echo "<p><input type='checkbox' id='". $name_img_categories. $id_categories."' name='categories' value='$name_img_categories'>";
+                echo "<p><input type='checkbox' id='". $name_img_categories. $id_categories."' name='categories[]' value='$id_categories'>";
                 echo " <label for='". $name_img_categories. $id_categories."'> $name_img_categories</label></p>";
                 $i++;
                 if($i > $lengthfor) {
@@ -117,7 +234,7 @@
             // 13 Enter
             var value = $(this).val();
             value = value.trim();
-            var inputhidden = $("<input type='hidden' name='tags'>");
+            var inputhidden = $("<input type='hidden' name='tags[]'>");
             inputhidden.attr("value", value);
             $(".after").after(inputhidden);
             var span = $("<span class='spandescgambar'></span>").text(value+" x");
@@ -186,6 +303,16 @@
             return false;
           }
         });
+      });
+      // pesan-upload
+      $(document).ready(function(){
+        var adaPesanUpload = $(".pesan-upload").length;
+        if(adaPesanUpload) {
+          setTimeout(function() {$(".pesan-upload").fadeOut()}, 1500);
+          $(".pesan-upload").click(function(){
+              $(this).fadeOut();
+          });
+        }
       });
     </script>
   </body>

@@ -83,18 +83,19 @@ input[type="checkbox"] {
 .previewimg {
   display: none;
   cursor: pointer;
+  position: relative;
 }
 /* .previewimg:hover .closeimg {
   display: block;
 } */
 .closeimg {
   background-color: rgba(0, 0, 0, 0.8);
-  height: 38vw;
+  height: 100%;
   width: 11vw;
   z-index: 999;
+  top: 0;
+  right: 0;
   position: absolute;
-  top: 2vw;
-  right: 10.5vw;
   display: none;
 }
 span.h1.hapusgambar {
@@ -102,11 +103,24 @@ span.h1.hapusgambar {
   height: 100%;
   display: block;
   text-align: center;
-  line-height: 10;
+  width: 99%;
+  position: absolute;
+  top: 42%;
 }
 .closeimg:hover {
   background-color: rgba(0, 0, 0, 0.9);
 }
 .closeimg:hover .hapusgambar {
   color: rgba(255, 33, 33, 0.9);
+}
+.pesan-upload {
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    font-size: 1.5em;
+    width: 100%;
+    background-color: rgba(243, 53, 53, 0.8);
+    color: rgba(255, 233, 233, 0.8);
+    font-weight: bold;
+    cursor: pointer;
 }

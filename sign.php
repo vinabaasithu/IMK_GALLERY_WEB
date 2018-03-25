@@ -31,7 +31,7 @@
       $stmt->close();
     } else {
       $stmt->close();
-      $date = date("Y-m-d");
+      $date = date("Y-m-d h:i:s");
       $stmt = $mysqli->prepare('INSERT INTO user (username, email, password, user_date_register) VALUES (?, ?, ?, ?)');
       $stmt->bind_param("ssss", $username, $email, $password, $date);
       if ($stmt->execute()) {
@@ -45,28 +45,43 @@
     $loginusername = $_POST['loginusername'];
     $loginpassword = md5($_POST['loginpassword']);
     $gmail = $_POST['gmail'];
+
     if (!$gmail) {
-      $stmt = $mysqli->prepare('SELECT username FROM user WHERE (username = ? || email = ?) && password = ?');
-      $stmt->bind_param("sss", $loginusername, $loginusername, $loginpassword);
+      $stmt = $mysqli->prepare('SELECT username FROM user WHERE username = ? && password = ?');
+      $stmt->bind_param("ss", $loginusername, $loginpassword);
       $stmt->execute();
-      if ($stmt->fetch()) {
-        $_SESSION['username'] = $loginusername;
-        header("Location: ../IMK/");
+      $stmt->bind_result($loginusernama);
+      if(!$stmt->fetch()) {
+        $stmt->close();
+        $stmt = $mysqli->prepare('SELECT username FROM user WHERE email = ? && password = ?');
+        $stmt->bind_param("ss", $loginusername, $loginpassword);
+        $stmt->execute();
+        $stmt->bind_result($loginusername);
+        if($stmt->fetch()) {
+          $_SESSION['username'] = $loginusername;
+          header("Location: ../IMK/");
+        } else {
+          $pesan = "Username/Email atau Password Salah";
+        }
+        $stmt->close();
       } else {
-        $pesan = "Username/Email atau Password Salah";
+        $stmt->close();
+        $_SESSION['username'] = $loginusernama;
+        header("Location: ../IMK/");
       }
     } else {
       $stmt = $mysqli->prepare('SELECT username FROM user WHERE (username = ? || email = ?) && password = ?');
       $stmt->bind_param("sss", $gmail, $gmail, md5($gmail));
       $stmt->execute();
+      $stmt->bind_result($uname);
       if ($stmt->fetch()) {
-        $_SESSION['username'] = $gmail;
+        $_SESSION['username'] = $uname;
         $_SESSION['gmail'] = $gmail;
         header("Location: ../IMK/");
         $stmt->close();
       } else {
         $stmt->close();
-        $date = date("Y-m-d");
+        $date = date("Y-m-d h:i:s");
         $stmt = $mysqli->prepare('INSERT INTO user (username, email, password, user_date_register) VALUES (?, ?, ?, ?)');
         $stmt->bind_param("ssss", $gmail, $gmail, md5($gmail), $date);
         if ($stmt->execute()) {

@@ -1,0 +1,146 @@
+div {
+  margin: 0 !important;
+}
+img {
+  cursor: pointer;
+}
+.header {
+  height: 27vw;
+  background-color: rgba(120, 120, 255, 0.5);
+  background-image: url("../img/sampuldummy (1).jpeg");
+  background-size: 100%;
+  background-position: 0 50%;
+  position: relative;
+  cursor: pointer;
+}
+.whitecoverheader {
+  height: 5vw;
+  width: 100%;
+  background-color: rgba(198, 198, 255, 0.5);
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+}
+.profilecontent {
+  /* height: 40vw; */
+  /* background-color: rgba(245, 216, 216, 0.5); */
+  background-color: rgba(255, 255, 255, 1);
+}
+.userprofiledivcon{
+  background-color: rgba(253, 226, 217, 0.9);
+  border-radius: 5%;
+  margin: 0.5vw 2vw !important;
+  /* width: 33.3333333%; */
+  position: relative;
+}
+.userprofilegallery {
+  /* width: 67%; */
+  background-color: rgba(253, 226, 217, 0.9);
+  border-radius: 5%;
+  padding: 2%;
+}
+.userprofiledivcon, .userprofilegallery {
+  margin: 0 !important;
+  padding: 0;
+
+}
+.menuleft {
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+  font-size: 2.2vw;
+  padding: 1.2vw;
+  background-color: rgba(0,0,0,0.95);
+}
+.menuleft a {
+  color: rgba(226, 255, 226, 0.6);
+  padding: 1.2vw 0;
+  display: inline-block;
+}
+.menuleft a:hover {
+  color: #fff;
+}
+.userprofilediv {
+  position: absolute;
+  width: 13vw;
+  top: -9vw;
+  left: 7vw;
+}
+img.img-fluid {
+    background-color: #fff;
+}
+.userprofilediv img {
+  border-radius: 50%;
+}
+.userabout {
+  margin: 5.5vw 0 0 7vw !important;
+}
+hr {
+  border: 1.5px solid #ddd;
+}
+.aboutme {
+  color: #f17581;
+}
+.userabout p {
+  padding-right: 5vw;
+}
+.galleryUserProfile {
+  padding: 2vw;
+}
+.galleryUserProfile div {
+    padding: 5px;
+}
+.galleryUserProfile div img {
+    margin: 5px 0;
+}
+.changePP {
+  position: absolute;
+  bottom: 1vw;
+  /* left: 3vw; */
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  display: none;
+}
+.changePP:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+/* .userprofilediv:hover .changePP {
+  display: block;
+} */
+.gantiSampul {
+  height: 100%;
+  position: absolute;
+  font-weight: bold;
+  color: rgba(255, 0, 0, 0.7);
+  width: 10vw;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding-top: 8vw;
+  cursor: pointer;
+  display: none;
+}
+.gantiSampul:hover {
+  color: rgba(255, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+/* .header:hover .gantiSampul {
+  display: block;
+} */
+.img-opacity {
+  -webkit-transition: opacity .5s linear;
+  -moz-transition: opacity .5s linear;
+  -ms-transition: opacity .5s linear;
+  -o-transition: opacity .5s linear;
+  transition: opacity .5s linear
+}
+.img-opacity {
+  opacity: 0.9;
+}
+.img-opacity:hover {
+  opacity: 1;
+}

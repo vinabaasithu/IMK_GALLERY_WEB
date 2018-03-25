@@ -4,10 +4,12 @@ div {
 }
 a {
   color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
 }
 a:hover {
   color: #000;
   text-decoration: none;
+  cursor: pointer;
 }
 .header {
   padding: 1.5vw;

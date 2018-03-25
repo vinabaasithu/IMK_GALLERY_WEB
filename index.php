@@ -1,5 +1,6 @@
 <?php
   session_start();
+  require_once 'db.php';
   $cekLogForUpload = "";
   if(isset($_GET['r']) && $_GET['r'] == "logout") {
     $logout = $_GET['r'];
@@ -21,6 +22,7 @@
     <script defer src="source/js/fontawesome-all.min.js"></script>
     <link rel="stylesheet" href="source/css/styleIndex.css">
     <link rel="stylesheet" href="source/css/styleHeader.css">
+    <link rel="stylesheet" href="source/css/imgview.css">
   </head>
   <body>
     <?php include 'source/template/navbarMenuSearch.php'; ?>
@@ -35,35 +37,39 @@
     <div class="trendingNew">
       <div class="trendingNew-container">
         <div class="trendingNew-menu">
-          <a href="#">
+          <a class="a-trendingNew-menu" value="random">
+            <strong>Random</strong>
+          </a>
+          <a class="a-trendingNew-menu" value="trending">
             <strong>Trending</strong>
           </a>
-          <a href="#">
+          <a class="a-trendingNew-menu" value="new">
             <strong>New</strong>
           </a>
         </div>
         <div class="trendingNew-img row">
-          <div class=" col-md-4 trendingNew-imgCol">
             <?php
-              for($i = 0; $i < 5; $i++) {
-                echo "<img class='img-fluid' src='source/img/img".rand(0, 2).".jpeg'>";
+            $order = "ORDER BY RAND() DESC LIMIT 16";
+            $stmt = $mysqli->prepare("SELECT id_img, img_title, img_src, img_description, img_date_upload, dilihat, username FROM img $order");
+            $stmt->execute();
+            $stmt->store_result();
+            $num_rows = $stmt->num_rows; //15
+            $stmt->bind_result($id_img, $img_title, $img_src, $img_description, $img_date_upload, $dilihat, $username);
+            $for_length = floor($num_rows/3);
+            $i = 0;
+            while($stmt->fetch()) {
+              if(!($i % $for_length)) {
+                echo "<div class='col-md-4 trendingNew-imgCol'>";
               }
+              echo "<img class='img-fluid img-opacity' src='".$img_src."'>";
+              $i++;
+              if ($i == $for_length) {
+                $i = 0;
+                echo "</div>";
+              }
+            }
+            $stmt->close();
              ?>
-          </div>
-          <div class=" col-md-4 trendingNew-imgCol">
-              <?php
-                for($i = 0; $i < 5; $i++) {
-                  echo "<img class='img-fluid' src='source/img/img".rand(0, 2).".jpeg'>";
-                }
-               ?>
-          </div>
-          <div class=" col-md-4 trendingNew-imgCol">
-              <?php
-                for($i = 0; $i < 5; $i++) {
-                  echo "<img class='img-fluid' src='source/img/img".rand(0, 2).".jpeg'>";
-                }
-               ?>
-          </div>
         </div>
       </div>
     </div>
@@ -80,11 +86,32 @@
         setTimeout(function() {$(".errLog").fadeOut()}, 1500);
         $(document).ready(function(){
           $(".errLog").click(function(){
-            $(".errLog").fadeOut();
+            $(this).fadeOut();
           })
         });
       }
+      // ajax
+      $(document).ready(function(){
+        $(".a-trendingNew-menu").click(function(){
+            var value = $(this).attr("value");
+            $.ajax({    //create an ajax request to display.php
+            type: "GET",
+            url: "source/etc/selectIndex.php?r="+value,
+            dataType: "html",   //expect html to be returned
+            success: function(response){
+                        $(".trendingNew-img").html(response);
+                        $(".trendingNew-img").hide();
+                        var i = Math.ceil(3*Math.random());
+                        switch (i) {
+                          case 1: $(".trendingNew-img").show("slow"); break;
+                          case 2: $(".trendingNew-img").fadeIn("slow"); break;
+                          case 3: $(".trendingNew-img").slideDown("slow"); break;
+                        }
 
+                    }
+            });
+        });
+      });
     </script>
   </body>
 </html>
