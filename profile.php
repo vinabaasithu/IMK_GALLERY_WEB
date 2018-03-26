@@ -17,6 +17,7 @@ if(isset($_GET['r'])) {
     <link rel="stylesheet" href="source/css/bootstrap.min.css.map">
     <link rel="stylesheet" href="source/css/styleProfile.css">
     <link rel="stylesheet" href="source/css/imgview.css">
+    <link rel="stylesheet" href="source/css/imghoverlopelope.css">
     <script defer src="source/js/fontawesome-all.min.js"></script>
   </head>
   <body>
@@ -25,11 +26,16 @@ if(isset($_GET['r'])) {
 
       </div>
     <!--  -->
+    <div class="pageblur">
+      <form class="searchinprofile" action="#" method="post">
+       <input class="form-control searchhereprofile" type="text" name="" value="" placeholder="Search Here ..">
+      </form>
+    </div>
     <div class="menuleft text-center">
       <div>
         <a href="../IMK/">Logo</a>
       </div>
-      <div>
+      <div class="searchbtnprofile">
         <a href="#">
           <i class="fas fa-search"></i>
         </a>
@@ -45,19 +51,27 @@ if(isset($_GET['r'])) {
         </a>
       </div>
       <div>
-        <a href="#">
-          <i class="fas fa-cog"></i>
+        <a href="gallery.php">
+          <i class="fas fa-image"></i>
         </a>
       </div>
       <div>
-        <a href="<?php if(isset($_SESSION['gmail'])) echo "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" ?>http://localhost/IMK/index.php?r=logout">
-          <i class="fas fa-sign-out-alt"></i>
-        </a>
+        <div class="userprofiledivlogo">
+          <img src="source/img/userProfileDummy.png" class="imgprofilelogo img-fluid" alt="">
+        </div>
+        <div class="userprofiledivlogoclick">
+          <a>
+            <p>Settings</p>
+          </a>
+          <a href="<?php if(isset($_SESSION['gmail'])) echo "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" ?>http://localhost/IMK/index.php?r=logout">
+            <p>Logout</p>
+          </a>
+        </div>
       </div>
     </div>
     <div class="header">
       <div class="gantiSampul text-center h1">
-        x
+        <i class="fas fa-edit"></i>
       </div>
       <p class="whitecoverheader"></p>
     </div>
@@ -130,6 +144,7 @@ if(isset($_GET['r'])) {
     <script src="source/js/jquery-3.3.1.min.js"></script>
     <script src="source/js/popper.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="source/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="source/js/imgview.js" charset="utf-8"></script>
     <script type="text/javascript">
       var a = "<?php echo "img".$arrimg[2][0] ?>";
       var img = document.getElementById(a);
@@ -146,16 +161,20 @@ if(isset($_GET['r'])) {
         }, function(){
           $(".changePP").fadeOut(800);
         });
-
-        $(".imgview").click(function(){
-          var value = $(this).attr("id");
-          $.ajax({    //create an ajax request to display.php
-          type: "GET",
-          url: "source/template/imgview.php?r="+value,
-          dataType: "html",   //expect html to be returned
-          success: function(response){
-                      $(".img-view-client").html(response);
-                  }
+        $(document).ready(function(){
+          $(".userprofiledivlogo").click(function(){
+            $(".userprofiledivlogoclick").fadeToggle();
+          });
+        });
+        $(document).ready(function(){
+          $(".searchbtnprofile").click(function(){
+            $(".pageblur").fadeIn();
+          });
+          $(".pageblur").click(function(e){
+            if (e.target != this) {
+              return;
+            }
+            $(this).fadeOut();
           });
         });
       });

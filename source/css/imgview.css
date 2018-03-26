@@ -1,23 +1,14 @@
 .img-view {
-  z-index: 2;
-  background-color: rgba(13, 14, 14, 0.56);
-  width: 95%;
-  position: fixed;
-  height: 100%;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    height: 100%;
+    z-index: 3;
+    text-align: center;
 }
-.img-view-contaier {
-  position: relative;
-  height: 50vw;
+.img-view-container.col-md-12 {
+    padding: 0;
 }
-.img-view-contaier img {
-  width: 50vw;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+.img-view-fluid {
+    width: 100%;
 }

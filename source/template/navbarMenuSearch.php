@@ -26,11 +26,9 @@
     <div class="row">
       <div class="col-md-8" style="<?php if (isset($_SESSION['username'])) echo "right:-8vw" ?>" >
         <div class="row indexMenu1">
-          <a class="col-md-3" href="#">
+          <a class="col-md-3"></a>
+          <a class="col-md-3" href="gallery.php">
               Gallery
-          </a>
-          <a class="col-md-3" href="#">
-              Event
           </a>
          <div class="col-md-3 uploadBtn">
            <a href="upload.php">
@@ -47,11 +45,15 @@
           <a href="#" class="col-md-6"></a>
           <span class="col-md-4 text-center" id="usericonklik" href="#" >
             <a class=" usericon" href="#">
-              <i class="fas fa-user h4"></i>
+              <!-- <i class="fas fa-user h4"></i> -->
+              <div class="userprofiledivlogo">
+                <img src="source/img/userProfileDummy.png" class="imgprofilelogo img-fluid" alt="">
+              </div>
             </a>
           </span>
           <div class="iconklik" id="iconklik">
             <a href="profile.php<?php if(isset($_SESSION["username"])) echo "?r=".$_SESSION['username'] ?>"><p>Profile</p></a>
+            <a href="#"><p>Notif</p></a>
             <a href="#"><p>Setting</p></a>
             <a href="<?php if(isset($_SESSION['gmail'])) echo "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" ?>http://localhost/IMK/index.php?r=logout"><p>Logout</p></a>
 

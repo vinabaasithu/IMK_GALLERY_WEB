@@ -1,0 +1,57 @@
+.fa-heart {
+  color: rgba(206, 39, 39, 0.78);
+  right: 3vw;
+  bottom: 1vw;
+  position: absolute;
+}
+.fa-heart:hover {
+  color: rgba(255, 0, 0, 0.9);
+}
+.fa-ellipsis-v {
+  color: rgba(255, 255, 255, 0.7);
+  right: 1vw;
+  bottom: 1vw;
+  position: absolute;
+}
+.fa-ellipsis-v:hover {
+  color: #fff;
+}
+.usernamegamb {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 1vw;
+}
+.judulgamb {
+  position: absolute;
+  bottom: 3vw;
+  width: 100%;
+  left: 1vw;
+}
+.judulgamb, .usernamegamb {
+  color: #fff;
+}
+.img-container-lope {
+  position: relative;
+  opacity: 0.75;
+}
+.img-container-lope:hover {
+  opacity: 1;
+}
+.img-hover-lopelope {
+  display: none;
+  width: 100%;
+  position: absolute;
+  bottom: 1vw;
+  font-size: 1.4em;
+}
+
+.img-container-lope {
+  cursor: pointer;
+}
+.img-container-lope span {
+  color: rgba(255, 255, 255, 0.8);
+}
+.img-container-lope span:hover {
+  color: #fff;
+}

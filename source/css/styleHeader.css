@@ -13,6 +13,10 @@ a:hover {
 }
 .header {
   padding: 1.5vw;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: #fff;
 }
 .indexMenu1 .col-md-3, .indexMenu2 .col-md-6  {
   color: #999;
@@ -41,13 +45,13 @@ a:hover {
   display: inline-block;
   width: 17%;
 }
-.usericon {
+/* .usericon {
   padding: 0.1vw 0.8vw;
   padding-top: 0.5vw;
   display: inline-block;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
-}
+} */
 a.col-md-6.text-center.usericon:hover {
   color: #fff;
 }
@@ -70,7 +74,7 @@ a.col-md-6.text-center.usericon:hover {
   display: inline-block;
   border-radius: 1.1vw;
   position: relative;
-  z-index: 50;
+  z-index: 1;
 }
 .btn-fa-search  {
   position: absolute;
@@ -93,7 +97,7 @@ a.col-md-6.text-center.usericon:hover {
   position: fixed;
   bottom: 15vw;
   width: 90%;
-  z-index: 50;
+  z-index: 1;
 }
 .searchindexmobile input.form-control.search {
   left: 5vw;
@@ -107,6 +111,15 @@ a.col-md-6.text-center.usericon:hover {
   border-radius: 3vw;
   padding-right: 3vw;
 }
+.userprofiledivlogo {
+  /* position: absolute; */
+  width: 3vw;
+}
+.userprofiledivlogo img {
+  border-radius: 50%;
+  border: 1px solid rgba(216, 216, 216, 0.6);
+}
+
 @media only screen and (max-width: 768px) {
     .logotitle {
         text-align: center !important;

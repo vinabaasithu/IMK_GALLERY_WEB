@@ -1,0 +1,79 @@
+body {
+  background-color: rgb(226, 212, 212);
+}
+label {
+  cursor: pointer;
+}
+.header {
+  background-color: #000;
+  color: #fff;
+}
+.header a {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.header a:hover {
+  color: #fff !important;
+}
+.iconklik p{
+  color: rgba(0, 0, 0, 0.8);
+}
+.iconklik p:hover {
+  color: #000;
+}
+.usericon {
+  background-color: #ddd;
+}
+.fa-user {
+  color: rgba(0, 0, 0, 0.8);
+}
+.fa-user:hover {
+  color: #000;
+}
+.img-fluid.img-opacity.imgview {
+  margin: 1vw 0;
+}
+.fa-bars-con {
+  font-size: 1.3em;
+  position: fixed;
+  left: 3%;
+  top: 18%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.2vw 1vw;
+  border-radius: 30%;
+  cursor: pointer;
+}
+.fa-bars-con:hover .fa-bars {
+  background-color: #000;
+  color: #fff;
+}
+.fa-bars {
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+.categorybar {
+  z-index: 1;
+  position: fixed;
+  left: -55vw;
+  top: 0;
+  height: 100%;
+  background-color: rgb(226, 212, 212);
+  padding-right: 2vw;
+  overflow-y: scroll;
+}
+.background-pink {
+  background-color: rgb(199, 187, 187);
+  margin: 2vw 0;
+  padding: 0.5vw 1.5vw;
+}
+p.list-categories {
+  padding: 0 2vw;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.7);
+}
+p.list-categories:hover {
+  color: #000;
+}
+.background-pink > .fa-bars {
+  margin-left: 1.5vw;
+}

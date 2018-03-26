@@ -21,8 +21,20 @@
       if(!($i % $for_length)) {
         echo "<div class='col-md-4 trendingNew-imgCol'>";
       }
-      echo "<img class='img-fluid' src='".$img_src."'>";
+      echo "<div class='img-container-lope' value='img".$id_img."'>"; //
+      echo "<img id='img".$id_img."' class='imgview img-opacity img-fluid' src='".$img_src."'>";
+      ?>
+      <div class="img-hover-lopelope" value="img<?php echo $id_img ?>"> <!-- -->
+        <span class="judulgamb"><small><?php echo $img_title ?></small></span> <!-- -->
+        <a href="profile.php?r=<?php echo $username ?>"> <!-- -->
+          <span class="usernamegamb"><?php echo $username ?></span> <!-- -->
+        </a> <!-- -->
+        <i class="fas fa-heart"></i> <!-- -->
+        <i class="fas fa-ellipsis-v"></i> <!-- -->
+      </div> <!-- -->
+      <?php
       $i++;
+      echo "</div>";
       if ($i == $for_length) {
         $i = 0;
         echo "</div>";
