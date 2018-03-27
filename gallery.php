@@ -84,6 +84,7 @@ ORDER BY `img_categories`.`name_img_categories` ASC");
     <script src="source/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="source/js/styleHeader.js" charset="utf-8"></script>
     <script src="source/js/imgview.js" charset="utf-8"></script>
+    <script src="source/js/imgviewclose.js" charset="utf-8"></script>
     <script src="source/js/imghoverlopelope.js" charset="utf-8"></script>
     <script type="text/javascript">
       $(document).ready(function(){

@@ -145,6 +145,7 @@ if(isset($_GET['r'])) {
     <script src="source/js/popper.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="source/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="source/js/imgview.js" charset="utf-8"></script>
+    <script src="source/js/imgviewclose.js" charset="utf-8"></script>
     <script type="text/javascript">
       var a = "<?php echo "img".$arrimg[2][0] ?>";
       var img = document.getElementById(a);

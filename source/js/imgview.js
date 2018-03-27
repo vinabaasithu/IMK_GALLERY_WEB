@@ -9,6 +9,7 @@
 //           }
 //   });
 // });
+
 $(document).on('click', '.imgview',function() {
     var value = $(this).attr("id");
     $.ajax({    //create an ajax request to display.php

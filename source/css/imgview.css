@@ -1,5 +1,6 @@
 .img-view {
     position: fixed;
+    top: 0;
     width: 100%;
     background-color: #fff;
     height: 100%;
@@ -11,4 +12,25 @@
 }
 .img-view-fluid {
     width: 100%;
+}
+.close-img-view {
+    position: absolute;
+    z-index: 1;
+    top: 2vw;
+    right: 2vw;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10%;
+}
+.close-img-view:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+.close-img-view:hover .fa-window-close {
+  color: rgba(0, 0, 0, 1);
+}
+.fa-window-close {
+    font-size: 4vw;
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.7);
+    transform: scaleY(1.2);
 }

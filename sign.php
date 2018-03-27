@@ -14,10 +14,10 @@
       $title = "Sign In";
       $formActive = "signin";
     } else {
-      header("Location: ../IMK/");
+      header("Location: ../IMK/index.php?landing_clicked");
     }
   } else {
-    header("Location: ../IMK/");
+    header("Location: ../IMK/index.php?landing_clicked");
   }
   if(isset($_POST['signup'])) {
     $username = $_POST['username'];
@@ -59,7 +59,7 @@
         $stmt->bind_result($loginusername);
         if($stmt->fetch()) {
           $_SESSION['username'] = $loginusername;
-          header("Location: ../IMK/");
+          header("Location: ../IMK/index.php?landing_clicked");
         } else {
           $pesan = "Username/Email atau Password Salah";
         }
@@ -67,7 +67,7 @@
       } else {
         $stmt->close();
         $_SESSION['username'] = $loginusernama;
-        header("Location: ../IMK/");
+        header("Location: ../IMK/index.php?landing_clicked");
       }
     } else {
       $stmt = $mysqli->prepare('SELECT username FROM user WHERE (username = ? || email = ?) && password = ?');
@@ -77,7 +77,7 @@
       if ($stmt->fetch()) {
         $_SESSION['username'] = $uname;
         $_SESSION['gmail'] = $gmail;
-        header("Location: ../IMK/");
+        header("Location: ../IMK/index.php?landing_clicked");
         $stmt->close();
       } else {
         $stmt->close();
@@ -176,7 +176,7 @@
           <input class="btn btn-primary" type="submit" name="signin" id="signsubmit" value="Login">
         </div>
         <p class="text-center">
-          <small>Lupa Password ? Klik <a href="../IMK">Disini</a> Untuk Pulihkan Kembali</small>
+          <small>Lupa Password ? Klik <a href="../IMK/index.php?landing_clicked">Disini</a> Untuk Pulihkan Kembali</small>
         </p>
         <p class="text-center"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Atau Langsung Masuk Dengan Google</strong></p>
         <div class="form-group text-center">

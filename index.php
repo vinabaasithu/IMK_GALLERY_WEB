@@ -1,14 +1,14 @@
 <?php
   session_start();
   require_once 'db.php';
-  if(!isset($_GET['landing_clicked'])) {
+  if(!isset($_GET['landing_clicked']) && !isset($_GET['r'])) {
     header("Location: source/landing page/");
   }
   $cekLogForUpload = "";
   if(isset($_GET['r']) && $_GET['r'] == "logout") {
     $logout = $_GET['r'];
     session_destroy();
-    header("Location: ../IMK/");
+    header("Location: ../IMK/index.php?landing_clicked");
   }
   if (isset($_GET['r'])) {
     $cekLogForUpload = $_GET['r'];
@@ -102,6 +102,7 @@
     <script src="source/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="source/js/styleHeader.js" charset="utf-8"></script>
     <script src="source/js/imgview.js" charset="utf-8"></script>
+    <script src="source/js/imgviewclose.js" charset="utf-8"></script>
     <script src="source/js/imghoverlopelope.js" charset="utf-8"></script>
     <script type="text/javascript">
       var adaErrLog = $(".errLog").length;

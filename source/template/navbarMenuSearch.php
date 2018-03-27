@@ -1,3 +1,6 @@
+<div class="margintop">
+
+</div>
 <div class="header row text-center">
   <div class="col-md-3 logo">
     <div class="row">
@@ -103,3 +106,6 @@
       </button>
   </div>
 </form>
+<div class="aftersearchindexmobilepadding">
+
+</div>
