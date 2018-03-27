@@ -33,7 +33,7 @@ if(isset($_GET['r'])) {
     </div>
     <div class="menuleft text-center">
       <div>
-        <a href="../IMK/">Logo</a>
+        <a href="../IMK/index.php?landing_clicked">Logo</a>
       </div>
       <div class="searchbtnprofile">
         <a href="#">
