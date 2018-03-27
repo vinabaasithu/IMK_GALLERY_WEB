@@ -2,7 +2,7 @@
   <div class="col-md-3 logo">
     <div class="row">
       <div class="col-md-3">
-        <a href="../IMK/">
+        <a href="../IMK/index.php?landing_clicked">
           <strong>LOGO</strong>
         </a>
       </div>
