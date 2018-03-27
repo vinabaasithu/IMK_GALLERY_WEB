@@ -79,7 +79,7 @@
   </div>
 </div>
 <div class="menuMobile">
-  <a href="../IMK/">
+  <a href="../IMK/index.php?landing_clicked">
     <i class="fas fa-home"></i>
   </a>
   <a href="#" class="menuMobileSearch">
