@@ -1,6 +1,9 @@
 <?php
   session_start();
   require_once 'db.php';
+  if(!isset($_GET['landing_clicked'])) {
+    header("Location: source/landing page/");
+  }
   $cekLogForUpload = "";
   if(isset($_GET['r']) && $_GET['r'] == "logout") {
     $logout = $_GET['r'];
